@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "租户管理";
+}
+<div style="margin-top: 80px;">
+    租户信息
+    <hr class="layui-bg-red">
+    <table class="layui-table">
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                Name
+            </td>
+            <td>
+                Status
+            </td>
+        </tr>
+        @foreach (var tenant in ViewBag.tenants as List<Tenant>)
+        {
+            <tr>
+                <td>
+                    @tenant.Id
+                </td>
+                <td>
+                    @tenant.Name
+                </td>
+                <td>
+                    @tenant.Flag
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+新增租户
+<hr class="layui-bg-red">
+<div>
+    <table class="layui-table">
+        <tr>
+            <td>租户名称：</td>
+            <td><input id="tenantName" name="tenantName" type="text" /></td>
+            <td>密码：</td>
+            <td><input name="tenantPassword" type="password" /></td>
+        </tr>
+    </table>
+</div>
+<button type="button" class="layui-btn" onclick="regist()">添加</button>
+<script>
+    function regist() {
+        $.ajax({
+            url: 'Tenant\\RegistTeant?name=' + $("#tenantName").val(),
+            success: function (rs) {
+                if (rs.code > 0) {
+                    top.location.reload();
+                } else {
+                    layer.msg(rs.message);
+                }
+            }
+        });
+    }
+</script>
