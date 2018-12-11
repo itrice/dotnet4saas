@@ -1,0 +1,15 @@
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\bin\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.exe
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\bin\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.deps.json
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\bin\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.runtimeconfig.json
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\bin\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.runtimeconfig.dev.json
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\bin\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.dll
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\bin\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.pdb
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.csprojResolveAssemblyReference.cache
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.csproj.CoreCompileInputs.cache
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.RazorAssemblyInfo.cache
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.RazorAssemblyInfo.cs
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.AssemblyInfoInputs.cache
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.AssemblyInfo.cs
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.RazorTargetAssemblyInfo.cache
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.dll
+H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.1\iTrice.SAAS.ProxyHost.pdb

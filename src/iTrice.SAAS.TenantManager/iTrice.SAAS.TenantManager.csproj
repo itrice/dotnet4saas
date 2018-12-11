@@ -31,10 +31,6 @@
     <Folder Include="Lib\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\iTrice.SAAS.Core\iTrice.SAAS.Core.csproj" />
-  </ItemGroup>
-
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
