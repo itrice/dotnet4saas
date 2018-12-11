@@ -14,7 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace iTrice.SAAS.TenantManager
 {
-    public class Startup
+    public class Startup:IStartup
     {
         public Startup(IConfiguration configuration)
         {

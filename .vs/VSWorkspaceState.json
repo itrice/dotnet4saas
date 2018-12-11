@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\tool"
   ],
-  "SelectedNode": "\\src\\iTrice.SAAS.TenantManager.sln",
   "PreviewInSolutionExplorer": false
 }

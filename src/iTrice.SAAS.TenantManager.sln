@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTrice.SAAS.TenantManager", "iTrice.SAAS.TenantManager\iTrice.SAAS.TenantManager.csproj", "{6A88AC37-D9BB-4990-8790-CEE161F12972}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTrice.SAAS.BusinessSystem", "iTrice.SAAS.BusinessSystem\iTrice.SAAS.BusinessSystem.csproj", "{1588A15A-EB49-4DDC-B2B8-3DBB684CB357}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTrice.SAAS.Core", "iTrice.SAAS.Core\iTrice.SAAS.Core.csproj", "{12D576AB-F3F8-4642-8B47-DBE219061F27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tool", "tool\tool.csproj", "{4FE34541-0A14-4943-B271-CFCB6B0263A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTrice.SAAS.ProxyHost", "iTrice.SAAS.ProxyHost\iTrice.SAAS.ProxyHost.csproj", "{02D20C5C-674A-42DB-867C-DF5C60781F67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{6A88AC37-D9BB-4990-8790-CEE161F12972}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A88AC37-D9BB-4990-8790-CEE161F12972}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A88AC37-D9BB-4990-8790-CEE161F12972}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1588A15A-EB49-4DDC-B2B8-3DBB684CB357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1588A15A-EB49-4DDC-B2B8-3DBB684CB357}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1588A15A-EB49-4DDC-B2B8-3DBB684CB357}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1588A15A-EB49-4DDC-B2B8-3DBB684CB357}.Release|Any CPU.Build.0 = Release|Any CPU
 		{12D576AB-F3F8-4642-8B47-DBE219061F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{12D576AB-F3F8-4642-8B47-DBE219061F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12D576AB-F3F8-4642-8B47-DBE219061F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{4FE34541-0A14-4943-B271-CFCB6B0263A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FE34541-0A14-4943-B271-CFCB6B0263A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FE34541-0A14-4943-B271-CFCB6B0263A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02D20C5C-674A-42DB-867C-DF5C60781F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02D20C5C-674A-42DB-867C-DF5C60781F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02D20C5C-674A-42DB-867C-DF5C60781F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02D20C5C-674A-42DB-867C-DF5C60781F67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

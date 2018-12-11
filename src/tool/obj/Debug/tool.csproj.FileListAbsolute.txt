@@ -1,7 +1,0 @@
-E:\Source\github\personal\src\tool\bin\Debug\tool.exe.config
-E:\Source\github\personal\src\tool\bin\Debug\tool.exe
-E:\Source\github\personal\src\tool\bin\Debug\tool.pdb
-E:\Source\github\personal\src\tool\obj\Debug\tool.csprojAssemblyReference.cache
-E:\Source\github\personal\src\tool\obj\Debug\tool.csproj.CoreCompileInputs.cache
-E:\Source\github\personal\src\tool\obj\Debug\tool.exe
-E:\Source\github\personal\src\tool\obj\Debug\tool.pdb
