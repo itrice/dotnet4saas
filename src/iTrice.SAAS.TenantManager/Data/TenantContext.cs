@@ -9,7 +9,7 @@ namespace iTrice.SAAS.TenantManager.Data
         public TenantContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TenantContext>();
-            optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS01;Integrated Security=True;Initial Catalog=Tenant");
+            optionsBuilder.UseSqlServer(TenantContext.ConnectionString);
 
             return new TenantContext(optionsBuilder.Options);
         }
@@ -17,6 +17,8 @@ namespace iTrice.SAAS.TenantManager.Data
 
     public class TenantContext : DbContext//, IDesignTimeDbContextFactory<TenantContext>
     {
+        public static string ConnectionString { get; set; }
+
         public TenantContext(DbContextOptions<TenantContext> options) : base(options)
         {
         }
@@ -25,7 +27,7 @@ namespace iTrice.SAAS.TenantManager.Data
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS01;Integrated Security=True;Initial Catalog=Tenant");
+            optionsBuilder.UseSqlServer(ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

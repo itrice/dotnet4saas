@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "iTrice.SAAS.Host/1.0.0": {
+        "dependencies": {
+          "iTrice.SAAS.Core": "1.0.0"
+        },
+        "runtime": {
+          "iTrice.SAAS.Host.dll": {}
+        }
+      },
+      "iTrice.SAAS.Core/1.0.0": {
+        "runtime": {
+          "iTrice.SAAS.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "iTrice.SAAS.Host/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "iTrice.SAAS.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

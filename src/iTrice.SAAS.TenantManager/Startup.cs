@@ -34,6 +34,7 @@ namespace iTrice.SAAS.TenantManager
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             // add dbcontent as ioc
+            TenantContext.ConnectionString = Configuration.GetConnectionString("SqlSugar");
             services.AddDbContext<TenantContext>(o => { o.UseSqlServer(Configuration.GetConnectionString("SqlSugar"));});
         }
 

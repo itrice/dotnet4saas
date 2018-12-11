@@ -41,6 +41,8 @@
             <td><input id="tenantName" name="tenantName" type="text" /></td>
             <td>密码：</td>
             <td><input name="tenantPassword" type="password" /></td>
+            <td>租户URL：</td>
+            <td><input id="tenantURL" name="tenantURL" type="text" /></td>
         </tr>
     </table>
 </div>
@@ -48,7 +50,7 @@
 <script>
     function regist() {
         $.ajax({
-            url: 'Tenant\\RegistTeant?name=' + $("#tenantName").val(),
+            url: 'Tenant\\RegistTeant?name=' + $("#tenantName").val() + "&url=" + $("#tenantURL").val(),
             success: function (rs) {
                 if (rs.code > 0) {
                     top.location.reload();

@@ -44,6 +44,8 @@ namespace iTrice.SAAS.TenantManager.Migrations
 
                     b.Property<string>("Password");
 
+                    b.Property<string>("URL");
+
                     b.HasKey("Id");
 
                     b.ToTable("Tenant");

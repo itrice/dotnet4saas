@@ -1,0 +1,9 @@
+E:\Source\github\personal\src\iTrice.SAAS.Core\bin\Debug\netcoreapp2.1\iTrice.SAAS.Core.deps.json
+E:\Source\github\personal\src\iTrice.SAAS.Core\bin\Debug\netcoreapp2.1\iTrice.SAAS.Core.dll
+E:\Source\github\personal\src\iTrice.SAAS.Core\bin\Debug\netcoreapp2.1\iTrice.SAAS.Core.pdb
+E:\Source\github\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.csprojAssemblyReference.cache
+E:\Source\github\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.csproj.CoreCompileInputs.cache
+E:\Source\github\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.AssemblyInfoInputs.cache
+E:\Source\github\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.AssemblyInfo.cs
+E:\Source\github\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.dll
+E:\Source\github\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.pdb
