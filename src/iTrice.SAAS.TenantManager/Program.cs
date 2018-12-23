@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+using iTrice.SAAS.TenantManager.Data;
+using iTrice.SAAS.TenantManager.Server;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,13 +16,13 @@ namespace iTrice.SAAS.TenantManager
             using (var scope = host.Services.CreateScope())
             {
                 var servicePrivider = scope.ServiceProvider;
-                //var content = servicePrivider.GetService<TenantContext>();
-                //DbInitializer.Initialize(content);
+                var content = servicePrivider.GetService<TenantContext>();
+                DbInitializer.Initialize(content);
                 //Console.WriteLine("Initialize db");
             }
             host.Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) => WebHost.CreateDefaultBuilder(args).UseUrls("http://192.168.1.126:9090").UseStartup<Startup>();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) => WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
     }
 }

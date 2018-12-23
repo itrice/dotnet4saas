@@ -1,53 +1,98 @@
 ﻿@{
     ViewData["Title"] = "租户管理";
 }
-<div style="margin-top: 80px;">
-    租户信息
-    <hr class="layui-bg-red">
-    <table class="layui-table">
-        <tr>
-            <td>
-                ID
-            </td>
-            <td>
-                Name
-            </td>
-            <td>
-                Status
-            </td>
-        </tr>
-        @foreach (var tenant in ViewBag.tenants as List<Tenant>)
-        {
+
+
+<div class="layadmin-tabsbody-item layui-show">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <button type="button" class="layui-btn" style="float: right;">新增租户</button>
+        </div>
+        <div class="layui-row layui-col-space15">
+            租户信息
+            <hr class="layui-bg-red">
+            <table id="tenants" lay-filter="tenants" class="layui-hide"></table>
+            @*<table id="tenants" class="layui-table" lay-data="{url:'Tenant/GetAllTenants/', page:true, id:'idTest'}" lay-filter="tenants">
+                    <thead>
+                        <tr>
+                            <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
+                            <th lay-data="{field:'id',  sort: true, fixed: true}">ID</th>
+                            <th lay-data="{field:'name'}">用户名</th>
+                            <th lay-data="{field:'flag', width:80, sort: true}">Flag</th>
+                            <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+                        </tr>
+                    </thead>
+                </table>*@
+
+        </div>
+    </div>
+</div>
+
+<div class="layui-hide">
+    <div>
+        <table class="layui-table">
             <tr>
-                <td>
-                    @tenant.Id
-                </td>
-                <td>
-                    @tenant.Name
-                </td>
-                <td>
-                    @tenant.Flag
-                </td>
+                <td>租户名称：</td>
+                <td><input id="tenantName" name="tenantName" type="text" /></td>
+                <td>密码：</td>
+                <td><input name="tenantPassword" type="password" /></td>
+                <td>租户URL：</td>
+                <td><input id="tenantURL" name="tenantURL" type="text" /></td>
             </tr>
-        }
-    </table>
+        </table>
+    </div>
+    <button type="button" class="layui-btn" onclick="regist()">添加</button>
 </div>
-新增租户
-<hr class="layui-bg-red">
-<div>
-    <table class="layui-table">
-        <tr>
-            <td>租户名称：</td>
-            <td><input id="tenantName" name="tenantName" type="text" /></td>
-            <td>密码：</td>
-            <td><input name="tenantPassword" type="password" /></td>
-            <td>租户URL：</td>
-            <td><input id="tenantURL" name="tenantURL" type="text" /></td>
-        </tr>
-    </table>
-</div>
-<button type="button" class="layui-btn" onclick="regist()">添加</button>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
 <script>
+    $(function () {
+        layui.use('table', function () {
+            var table = layui.table;
+            //监听工具条
+            //$('.tenants .layui-btn').on('click', function(){
+            //    var type = $(this).data('type');
+            //    active[type] ? active[type].call(this) : '';
+            //});
+            table.render({
+                elem: '#tenants'
+                , url: 'Tenant/GetAllTenants/'
+                , totalRow: true
+                , toolbar: true
+                , cols: [[
+                    { checkbox: true, fixed: true },
+                    { field: 'id', title: 'ID', sort: false }
+                    , { field: 'name', title: '用户名', sort: true }
+                    , { field: 'url', title: 'URL' },
+                    , { field: 'flag', title: 'Flag' },
+                    { toolbar: '#barDemo' }]]
+                , page: true
+                , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+                    return {
+                        "code": res.code, //解析接口状态
+                        "msg": res.message, //解析提示文本
+                        "count": res.total, //解析数据长度
+                        "data": res.data //解析数据列表
+                    };
+                }
+            });
+            table.on('tool(tenants)', function (obj) {
+                var data = obj.data;
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    $.getJSON("Tenant/DelTenant?id=" + data,
+                        null,
+                        function(rs) {
+                            layer.msg(rs.message);
+                        });
+                    layer.close(index);
+                });
+            });
+        });
+    });
     function regist() {
         $.ajax({
             url: 'Tenant\\RegistTeant?name=' + $("#tenantName").val() + "&url=" + $("#tenantURL").val(),

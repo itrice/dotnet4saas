@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace iTrice.SAAS.TenantManager.Controllers
 {
@@ -17,18 +18,17 @@ namespace iTrice.SAAS.TenantManager.Controllers
 
         private Dictionary<Guid, Process> _hosts = new Dictionary<Guid, Process>();
 
-        public TenantController(TenantContext context)
+
+        public TenantController(TenantContext context, IConfiguration configuration)
         {
             _context = context;
+            Configuration = configuration;
         }
+
+        private IConfiguration Configuration { get; }
 
         public IActionResult Index()
         {
-            var ts = _context.Tenants.Where(o => o.Flag == 0).ToList();
-            ViewBag.tenants = ts;
-
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
@@ -50,7 +50,16 @@ namespace iTrice.SAAS.TenantManager.Controllers
             return View();
         }
 
-        public JsonResult RegistTeant(string name,string url)
+
+        #region 租户信息管理
+
+        /// <summary>
+        /// 注册租户
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public JsonResult RegistTeant(string name, string url)
         {
             var rst = new ResultMessage();
             try
@@ -70,6 +79,7 @@ namespace iTrice.SAAS.TenantManager.Controllers
                 _context.Tenants.Add(tenant);
                 _context.SaveChanges();
                 rst.Code = 1;
+                rst.Message = "注册成功";
             }
             catch (Exception e)
             {
@@ -80,6 +90,77 @@ namespace iTrice.SAAS.TenantManager.Controllers
 
             return Json(rst);
         }
+
+        /// <summary>
+        /// 获取租户数量
+        /// </summary>
+        /// <param name="type">0待审核 1已审核 2到期 3注销</param>
+        /// <returns></returns>
+        public JsonResult GetTenantCount(int type)
+        {
+            var rs = new ResultMessage();
+            try
+            {
+                rs.Data = _context.Tenants.Count(o => o.Flag == type);
+                rs.Code = 1;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                rs.Code = -1;
+                rs.Message = e.Message;
+            }
+
+            return Json(rs);
+        }
+
+        /// <summary>
+        /// 获取租户
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetAllTenants(int page, int limit)
+        {
+            var rs = new ResultMessage();
+            try
+            {
+                var totalCount = _context.Tenants.Count();
+                var list = _context.Tenants.Take(page * limit).Skip((page - 1) * limit).ToList();
+                rs.Data = list;
+                rs.Total = totalCount;
+                rs.Code = 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                rs.Code = -1;
+                rs.Message = e.Message;
+            }
+
+            return Json(rs);
+        }
+
+        /// <summary>
+        /// 删除租户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public JsonResult DelTenant(Guid id)
+        {
+            var rs = new ResultMessage();
+            var tent = _context.Tenants.FirstOrDefault(o => o.Id == id);
+            if (tent != null)
+            {
+                _context.Remove(tent);
+            }
+
+            rs.Code = 0;
+            rs.Message = "删除成功";
+            return Json(rs);
+        }
+
+        #endregion
+
+        #region 租户状态管理
 
         /// <summary>
         /// start the tenant
@@ -109,13 +190,15 @@ namespace iTrice.SAAS.TenantManager.Controllers
 
                 Task.Factory.StartNew(() =>
                 {
-                    var filePath = @"E:\Source\github\personal\src\iTrice.SAAS.BusinessSystem\bin\Release\netcoreapp2.1\win-x64\iTrice.SAAS.BusinessSystem.exe";
+                    var proxyHostPath = Configuration["ProxyHost"];
                     var startInfo = new ProcessStartInfo();
-                    startInfo.FileName = filePath;
+                    startInfo.FileName = proxyHostPath + "\\iTrice.SAAS.ProxyHost.exe";
                     startInfo.Arguments = $"{tenant.URL} {tenant.Name}";
-                    startInfo.WorkingDirectory = @"E:\Source\github\personal\src\iTrice.SAAS.BusinessSystem\bin\Release\netcoreapp2.1\win-x64\";
-                    Console.WriteLine($"{filePath}{tenant.URL}");
+                    startInfo.WorkingDirectory = proxyHostPath;
+                    Console.WriteLine($"{proxyHostPath}{tenant.URL}");
+
                     Process pro = System.Diagnostics.Process.Start(startInfo);
+
 
                     lock (_lock)
                     {
@@ -129,7 +212,8 @@ namespace iTrice.SAAS.TenantManager.Controllers
                 });
             }
 
-
+            rs.Code = 1;
+            rs.Message = "启动租户进程";
             return Json(rs);
         }
 
@@ -142,7 +226,6 @@ namespace iTrice.SAAS.TenantManager.Controllers
         {
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// start the tenant
@@ -164,7 +247,6 @@ namespace iTrice.SAAS.TenantManager.Controllers
 
             return Json(rs);
         }
-
 
         /// <summary>
         /// 获取宿主进程状态
@@ -195,6 +277,8 @@ namespace iTrice.SAAS.TenantManager.Controllers
 
             return Json(rs);
         }
+
+        #endregion
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
