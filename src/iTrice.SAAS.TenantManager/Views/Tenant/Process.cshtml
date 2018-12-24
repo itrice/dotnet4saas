@@ -1,43 +1,71 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
+<script>
 
-<div id="content" style="margin-top:80px;">
-    @foreach (var host in ViewBag.hosts as List<HostProcess>)
-    {
-        <div class="layui-row layui-col-space15">
-            <div class="layui-col-md6">
-                <div class="layui-card" style="background-color:#CCC">
-                    <div class="layui-card-header"><i class="layui-icon" style="color:forestgreen">&#xe679;</i>&nbsp;&nbsp; @host.TenantName</div>
-                    <div class="layui-card-body">
-                        UID: @host.TenantId<br>
-                        CPU:@host.CPU<br>
-                        内存:@host.Memory<br>
-                        地址:@host.URL<br>
-                        <div class="layui-row">
-                            <button class="layui-btn layui-btn-sm" onclick="startHost('@host.TenantId')">
-                                <i class="layui-icon">&#xe652;</i>
-                            </button>
-                            <button class="layui-btn layui-btn-sm" onclick="stopHost('@host.TenantId')">
-                                <i class="layui-icon">&#xe651;</i>
-                            </button>
+    var hosts = @Json.Serialize(@ViewBag.hosts);
+
+</script>
+
+<div class="layadmin-tabsbody-item layui-show">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space3">
+            @foreach (var host in ViewBag.hosts as List<HostProcess>)
+            {
+                <div class="layui-col-md6">
+                    <div id="@host.TenantId" class="layui-card" style="background-color:#CCC">
+                        <div class="layui-card-header">
+                            <span class="layui-badge layui-bg-gray running">停</span>
+                            <i class="layui-icon" style="color:forestgreen">&#xe679;</i>&nbsp;&nbsp; @host.TenantName
                         </div>
-
+                        <div class="layui-card-body">
+                            UID: @host.TenantId<br>
+                            PID: <span class="pid"></span><br>
+                            CPU: <span class="cpu">0</span><br>
+                            内存: <span class="memory">0</span><br>
+                            运行时间: <span class="runningtime">0</span><br>
+                            地址: <a href="@host.URL" target="_blank">@host.URL</a><br>
+                            <div class="layui-row">
+                                <div style="float:right;">
+                                    <button class="layui-btn layui-btn-sm" onclick="startHost('@host.TenantId')">
+                                        <i class="layui-icon">&#xe652;</i>
+                                    </button>
+                                    <button class="layui-btn layui-btn-sm" onclick="stopHost('@host.TenantId')">
+                                        <i class="layui-icon">&#xe651;</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
-    }
+    </div>
 </div>
+
 <script>
-    $(function () {
-        // 定时获取宿主程序状态
-    });
+    setInterval(function () {
+        $.each(hosts, function (i, n) {
+            console.log(n);
+            $.get("\\Tenant\\GetProcessStatus?id=" + n.tenantId, '', function (rs) {
+                if (rs.code < 0) {
+                    $("#" + n.tenantId).find('.running').removeClass('layui-bg-blue').addClass('layui-bg-gray').text("停止");
+                    $("#" + n.tenantId).find('.cpu').text(0);
+                    $("#" + n.tenantId).find('.pid').text('');
+                    $("#" + n.tenantId).find('.runningtime').text(0);
+                    $("#" + n.tenantId).find('.memory').text(0);
+                    return;
+                }
+                $("#" + n.tenantId).find('.running').removeClass('layui-bg-gray').addClass('layui-bg-blue').text("运行");
+                $("#" + n.tenantId).find('.cpu').text(rs.data.cpu);
+                $("#" + n.tenantId).find('.pid').text(rs.data.pid);
+                $("#" + n.tenantId).find('.runningtime').text(rs.data.runningTime);
+                $("#" + n.tenantId).find('.memory').text(rs.data.memory);
+            });
+        })
+    }, 2000);
+
     function startHost(id) {
         $.ajax({
-            url: '\StartTenantServer?id='+id,
+            url: '\StartTenantServer?id=' + id,
             success: function (rs) {
                 if (rs.code > 0) {
                     //top.location.reload();

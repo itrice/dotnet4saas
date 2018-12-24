@@ -18,7 +18,7 @@ namespace iTrice.SAAS.ProxyHost.Controllers
 
         public ActionResult Index()
         {
-            return Ok("234");
+            return Ok($"Hi!这里是宿主代理进程，数据库的连接地址是{Program.DB}");
         }
     }
 }

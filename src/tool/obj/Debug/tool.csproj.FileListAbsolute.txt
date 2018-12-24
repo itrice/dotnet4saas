@@ -1,7 +1,0 @@
-H:\安仕平的工作空间\Source\personal\src\tool\bin\Debug\tool.exe.config
-H:\安仕平的工作空间\Source\personal\src\tool\bin\Debug\tool.exe
-H:\安仕平的工作空间\Source\personal\src\tool\bin\Debug\tool.pdb
-H:\安仕平的工作空间\Source\personal\src\tool\obj\Debug\tool.csprojResolveAssemblyReference.cache
-H:\安仕平的工作空间\Source\personal\src\tool\obj\Debug\tool.csproj.CoreCompileInputs.cache
-H:\安仕平的工作空间\Source\personal\src\tool\obj\Debug\tool.exe
-H:\安仕平的工作空间\Source\personal\src\tool\obj\Debug\tool.pdb

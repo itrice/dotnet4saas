@@ -57,10 +57,10 @@ namespace iTrice.SAAS.ProxyHost
             });
         }
         
-        public void Configure(IApplicationBuilder app)
-        {
-            var env = app.ApplicationServices.GetService<IHostingEnvironment>();
-            Configure(app, env);
-        }
+        //public void Configure(IApplicationBuilder app)
+        //{
+        //    var env = app.ApplicationServices.GetService<IHostingEnvironment>();
+        //    Configure(app, env);
+        //}
     }
 }

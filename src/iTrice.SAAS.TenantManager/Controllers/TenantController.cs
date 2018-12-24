@@ -16,14 +16,18 @@ namespace iTrice.SAAS.TenantManager.Controllers
 
         private readonly TenantContext _context;
 
-        private Dictionary<Guid, Process> _hosts = new Dictionary<Guid, Process>();
-
-
         public TenantController(TenantContext context, IConfiguration configuration)
         {
             _context = context;
             Configuration = configuration;
         }
+
+        static TenantController()
+        {
+            HostInstance = new Dictionary<Guid, Process>();
+        }
+
+        public static Dictionary<Guid, Process> HostInstance { get; private set; }
 
         private IConfiguration Configuration { get; }
 
@@ -50,7 +54,6 @@ namespace iTrice.SAAS.TenantManager.Controllers
             return View();
         }
 
-
         #region 租户信息管理
 
         /// <summary>
@@ -70,6 +73,7 @@ namespace iTrice.SAAS.TenantManager.Controllers
                     rst.Code = -2;
                     return Json(rst);
                 }
+                Migrations.DBMigration.CreateDB(Configuration, "DB_" + name);
                 var tenant = new Tenant();
                 tenant.Id = Guid.NewGuid();
                 tenant.Name = name;
@@ -170,7 +174,7 @@ namespace iTrice.SAAS.TenantManager.Controllers
         public JsonResult StartTenantServer(Guid id)
         {
             var rs = new ResultMessage();
-            if (!_hosts.ContainsKey(id))
+            if (!HostInstance.ContainsKey(id))
             {
                 var tenant = _context.Tenants.FirstOrDefault(o => o.Id == id);
                 if (tenant == null)
@@ -193,7 +197,7 @@ namespace iTrice.SAAS.TenantManager.Controllers
                     var proxyHostPath = Configuration["ProxyHost"];
                     var startInfo = new ProcessStartInfo();
                     startInfo.FileName = proxyHostPath + "\\iTrice.SAAS.ProxyHost.exe";
-                    startInfo.Arguments = $"{tenant.URL} {tenant.Name}";
+                    startInfo.Arguments = $"{tenant.URL} DB_{tenant.Name}";
                     startInfo.WorkingDirectory = proxyHostPath;
                     Console.WriteLine($"{proxyHostPath}{tenant.URL}");
 
@@ -202,18 +206,22 @@ namespace iTrice.SAAS.TenantManager.Controllers
 
                     lock (_lock)
                     {
-                        _hosts.Add(id, pro);
+                        HostInstance.Add(id, pro);
                     }
                     pro.WaitForExit();
                     lock (_lock)
                     {
-                        _hosts.Remove(id);
+                        HostInstance.Remove(id);
                     }
                 });
+                rs.Message = "启动租户进程";
+            }
+            else
+            {
+                rs.Message = "租户已经启动";
             }
 
             rs.Code = 1;
-            rs.Message = "启动租户进程";
             return Json(rs);
         }
 
@@ -235,16 +243,23 @@ namespace iTrice.SAAS.TenantManager.Controllers
         public JsonResult StopTenantServer(Guid id)
         {
             var rs = new ResultMessage();
-            if (!_hosts.ContainsKey(id))
+            if (HostInstance.ContainsKey(id))
             {
-                var pro = _hosts[id];
-                pro.Close();
+                lock (_lock)
+                {
+                    var pro = HostInstance[id];
+                    pro.Kill();
+                }
                 var tenant = _context.Tenants.FirstOrDefault(o => o.Id == id);
                 rs.Code = 1;
-                rs.Message = $"已经停用租户:{tenant.Name}";
+                rs.Message = $"停用租户:{tenant.Name}";
                 return Json(rs);
             }
-
+            else
+            {
+                rs.Code = -1;
+                rs.Message = "停止失败";
+            }
             return Json(rs);
         }
 
@@ -259,20 +274,32 @@ namespace iTrice.SAAS.TenantManager.Controllers
 
             lock (_lock)
             {
-                if (!_hosts.ContainsKey(id))
+                if (!HostInstance.ContainsKey(id))
                 {
                     rs.Code = -1;
                     return Json(rs);
                 }
-                var host = _hosts[id];
-                rs.Code = 1;
-                rs.Data = new
+                var host = HostInstance[id];
+                if (!host.HasExited)
                 {
-                    Name = host.ProcessName,
-                    CPU = host.UserProcessorTime.TotalMilliseconds / host.TotalProcessorTime.TotalMilliseconds,
-                    MEMORY = host.VirtualMemorySize,
-                    NETWORK = ""
-                };
+                    rs.Code = 1;
+
+                    //间隔时间内的CPU运行时间除以逻辑CPU数量
+                    var value = (host.PrivilegedProcessorTime / host.TotalProcessorTime) / Environment.ProcessorCount * 100;
+                    //prevCpuTime = curTime;
+                    rs.Data = new
+                    {
+                        PID = host.Id,
+                        CPU = value,
+                        MEMORY = host.VirtualMemorySize,
+                        RunningTime = (DateTime.Now - host.StartTime).TotalSeconds,
+                        NETWORK = ""
+                    };
+                }
+                else
+                {
+                    rs.Code = -2;
+                }
             }
 
             return Json(rs);

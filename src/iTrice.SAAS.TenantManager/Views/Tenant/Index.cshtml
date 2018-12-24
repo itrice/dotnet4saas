@@ -2,7 +2,6 @@
     ViewData["Title"] = "租户管理";
 }
 
-
 <div class="layadmin-tabsbody-item layui-show">
     <div class="layui-fluid">
         <div class="layui-row layui-col-space15">
@@ -10,25 +9,12 @@
         </div>
         <div class="layui-row layui-col-space15">
             租户信息
-            <hr class="layui-bg-red">
-            <table id="tenants" lay-filter="tenants" class="layui-hide"></table>
-            @*<table id="tenants" class="layui-table" lay-data="{url:'Tenant/GetAllTenants/', page:true, id:'idTest'}" lay-filter="tenants">
-                    <thead>
-                        <tr>
-                            <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-                            <th lay-data="{field:'id',  sort: true, fixed: true}">ID</th>
-                            <th lay-data="{field:'name'}">用户名</th>
-                            <th lay-data="{field:'flag', width:80, sort: true}">Flag</th>
-                            <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
-                        </tr>
-                    </thead>
-                </table>*@
-
+            <table id="tenants" lay-filter="tenants" class="layui-hide"></table>           
         </div>
     </div>
 </div>
 
-<div class="layui-hide">
+<div>
     <div>
         <table class="layui-table">
             <tr>
@@ -59,16 +45,14 @@
             //});
             table.render({
                 elem: '#tenants'
-                , url: 'Tenant/GetAllTenants/'
-                , totalRow: true
-                , toolbar: true
+                , url: '\\Tenant\\GetAllTenants\\'
                 , cols: [[
                     { checkbox: true, fixed: true },
-                    { field: 'id', title: 'ID', sort: false }
-                    , { field: 'name', title: '用户名', sort: true }
-                    , { field: 'url', title: 'URL' },
-                    , { field: 'flag', title: 'Flag' },
-                    { toolbar: '#barDemo' }]]
+                    { field: 'id', title: 'ID', sort: false },
+                    { field: 'name', title: '用户名', sort: true },
+                    { field: 'url', title: 'URL' },
+                    { field: 'flag', width: 80, title: 'Flag' },
+                    { toolbar: '#barDemo', width:80, title:'操作' }]]
                 , page: true
                 , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
                     return {
@@ -95,7 +79,7 @@
     });
     function regist() {
         $.ajax({
-            url: 'Tenant\\RegistTeant?name=' + $("#tenantName").val() + "&url=" + $("#tenantURL").val(),
+            url: '\\Tenant\\RegistTeant?name=' + $("#tenantName").val() + "&url=" + $("#tenantURL").val(),
             success: function (rs) {
                 if (rs.code > 0) {
                     top.location.reload();

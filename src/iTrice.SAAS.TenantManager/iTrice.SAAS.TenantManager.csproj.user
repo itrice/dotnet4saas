@@ -6,5 +6,6 @@
   <PropertyGroup>
     <ActiveDebugProfile>iTrice.SAAS.BusinessSystem</ActiveDebugProfile>
     <ShowAllFiles>false</ShowAllFiles>
+    <NameOfLastUsedPublishProfile>FolderProfile</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

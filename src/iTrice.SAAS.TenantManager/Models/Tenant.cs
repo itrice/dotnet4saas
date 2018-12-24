@@ -5,7 +5,9 @@ namespace iTrice.SAAS.TenantManager.Models
     public class Tenant
     {
         public Guid Id { get; set; }
+
         public string Name { get; set; }
+
         public string Password { get; set; }
 
         /// <summary>
@@ -14,6 +16,7 @@ namespace iTrice.SAAS.TenantManager.Models
         public string URL { get; set; }
 
         public int Flag { get; set; }
+
         public DateTime CreateTime { get; set; }
     }
 }

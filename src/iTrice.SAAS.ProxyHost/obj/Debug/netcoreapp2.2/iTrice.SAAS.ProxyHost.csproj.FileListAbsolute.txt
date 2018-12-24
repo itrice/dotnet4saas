@@ -1,4 +1,0 @@
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.2\iTrice.SAAS.ProxyHost.csprojResolveAssemblyReference.cache
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.2\iTrice.SAAS.ProxyHost.csproj.CoreCompileInputs.cache
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.2\iTrice.SAAS.ProxyHost.AssemblyInfoInputs.cache
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.ProxyHost\obj\Debug\netcoreapp2.2\iTrice.SAAS.ProxyHost.AssemblyInfo.cs

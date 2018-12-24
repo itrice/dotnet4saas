@@ -1,9 +1,0 @@
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.csprojResolveAssemblyReference.cache
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.csproj.CoreCompileInputs.cache
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.AssemblyInfoInputs.cache
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.AssemblyInfo.cs
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.Core\bin\Debug\netcoreapp2.1\iTrice.SAAS.Core.deps.json
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.Core\bin\Debug\netcoreapp2.1\iTrice.SAAS.Core.dll
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.Core\bin\Debug\netcoreapp2.1\iTrice.SAAS.Core.pdb
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.dll
-H:\安仕平的工作空间\Source\personal\src\iTrice.SAAS.Core\obj\Debug\netcoreapp2.1\iTrice.SAAS.Core.pdb
