@@ -10,7 +10,7 @@ namespace iTrice.SAAS.TenantManager.Data
         {
             var optionsBuilder = new DbContextOptionsBuilder<TenantContext>();
             optionsBuilder.UseSqlServer(TenantContext.ConnectionString);
-
+            ///按时
             return new TenantContext(optionsBuilder.Options);
         }
     }
