@@ -18,5 +18,10 @@ namespace iTrice.SAAS.TenantManager.Models
         public int Flag { get; set; }
 
         public DateTime CreateTime { get; set; }
+
+        /// <summary>
+        /// 数据库
+        /// </summary>
+        public string DataBase { get; set; }
     }
 }

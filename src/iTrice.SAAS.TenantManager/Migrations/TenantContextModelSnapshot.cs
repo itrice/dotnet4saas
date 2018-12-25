@@ -38,6 +38,8 @@ namespace iTrice.SAAS.TenantManager.Migrations
 
                     b.Property<DateTime>("CreateTime");
 
+                    b.Property<string>("DataBase");
+
                     b.Property<int>("Flag");
 
                     b.Property<string>("Name");

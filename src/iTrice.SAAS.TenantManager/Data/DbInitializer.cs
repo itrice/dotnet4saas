@@ -1,8 +1,7 @@
-﻿using System;
-using System.Linq;
-using iTrice.SAAS.TenantManager.Controllers;
-using iTrice.SAAS.TenantManager.Data;
+﻿using iTrice.SAAS.TenantManager.Data;
 using iTrice.SAAS.TenantManager.Models;
+using System;
+using System.Linq;
 
 namespace iTrice.SAAS.TenantManager.Server
 {
