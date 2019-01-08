@@ -2,7 +2,7 @@
 
 ------
 src:
-  >* iTrice.SAAS.BusinessSystem  -----业务系统  
+  >* iTrice.SAAS.ProxyHost  -----宿主代理  
   >* iTrice.SAAS.TenantManager   -----租户管理系统
   
 ## 目前实现了
